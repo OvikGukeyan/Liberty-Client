@@ -1,45 +1,67 @@
 .checkout_wrapper {
-    width: 100%;
+    min-width: 100%;
     background-color: #F2F2F2;
     display: flex;
     align-items: center;
     flex-direction: column;
+    padding: 15px;
 
-    .back {
-        width: 1110px;
-        margin-top: 80px;
+    
 
-        a {
-            font-size: 15px;
-            font-weight: 500;
-            line-height: 25px;
-            letter-spacing: 0px;
-            text-decoration: none;
-        }
-    }
+    // .back {
+    //     width: 1110px;
+    //     margin-top: 80px;
+
+    //     a {
+    //         font-size: 15px;
+    //         font-weight: 500;
+    //         line-height: 25px;
+    //         letter-spacing: 0px;
+    //         text-decoration: none;
+    //     }
+    // }
 
 
 
 
     .checkout_box {
         max-width: 900px;
-        height: 100%;
+        width: 100%;
         background-color: #fff;
         border-radius: 15px;
         padding: 50px;
-        margin: 40px 0 40px 0;
+        margin: 40px auto;
+    
 
-
+        .header {
+            max-width: 900px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            img {
+                height: 80px;
+            }
+    
+            .logo {
+                height: 130px;
+            }
+        }
 
         h1 {
+            width: 100%;
             font-size: 32px;
             font-weight: 700;
             line-height: 36px;
             letter-spacing: 1.1428571939468384px;
-            margin: 0;
+            margin-bottom: 20px;
         }
 
         form {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
 
             h3 {
                 font-size: 13px;
@@ -53,6 +75,40 @@
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: space-between;
+
+                .radio_label {
+                    width: 49%;
+                    height: 56px;
+                    margin-bottom: 16px;
+                    display: flex;
+                    flex-direction: row-reverse;
+                    border: 1px solid #CFCFCF;
+                    border-radius: 8px;
+                    justify-content: flex-end;
+                    align-items: center;
+
+                    .radio {
+                        margin: 0 20px 0 20px;
+                        border: 2px solid white;
+                        box-shadow: 0 0 0 1px #CFCFCF;
+                        appearance: none;
+                        border-radius: 50%;
+                        width: 20px;
+                        height: 20px;
+                        background-color: #fff;
+                        transition: all ease-in 0.2s;
+                        cursor: pointer;
+
+                        &:hover {
+                            box-shadow: 0 0 0 1px #CD2C2C;
+
+                        }
+
+                        &:checked {
+                            background-color: #D87D4A;
+                        }
+                    }
+                }
 
                 label {
                     position: relative;
@@ -78,7 +134,8 @@
                     }
 
 
-                    input, textarea {
+                    .input,
+                    textarea {
                         margin-top: 9px;
                         height: 55px;
                         background-color: #fff;
@@ -107,6 +164,7 @@
                 .description {
                     width: 100%;
                     margin-top: 20px;
+
                     textarea {
                         height: 100px;
                         resize: none;
@@ -115,52 +173,42 @@
                 }
             }
 
-            .topics {
-
+            .check_box {
                 display: flex;
-                width: 100%;
-                justify-content: space-between;
-                flex-wrap: wrap;
+                margin-top: -15px;
 
+                .check{
+                    width: 15px;
+                    margin-right: 10px;
+                }
+            }
 
-                label {
-                    width: 49%;
-                    height: 56px;
-                    margin-bottom: 16px;
-                    display: flex;
-                    flex-direction: row-reverse;
-                    border: 1px solid #CFCFCF;
-                    border-radius: 8px;
-                    justify-content: flex-end;
-                    align-items: center;
+            .submit_button {
+                width: 160px;
+                height: 50px;
+                background-color: #fff;
+                border: 2px solid #000;
+                color: #000;
+                font-weight: 500;
+                font-size: 16px;
+                align-self: flex-end;
+                margin-top: 25px;
 
-                    input {
-                        margin: 0 20px 0 20px;
-                        border: 2px solid white;
-                        box-shadow: 0 0 0 1px #CFCFCF;
-                        appearance: none;
-                        border-radius: 50%;
-                        width: 20px;
-                        height: 20px;
-                        background-color: #fff;
-                        transition: all ease-in 0.2s;
-                        cursor: pointer;
-
-                        &:hover {
-                            box-shadow: 0 0 0 1px #CD2C2C;
-
-                        }
-
-                        &:checked {
-                            background-color: #D87D4A;
-                        }
-                    }
+                &:hover {
+                    background-color: #000;
+                    color: #fff;
                 }
 
+                &:disabled {
+                    background-color: #777676;
+                    border: #777676;
+                    color: #CFCFCF;
 
-
-
+                }
             }
+
+           
+            
         }
 
     }
@@ -197,24 +245,18 @@
                     flex-direction: column;
                     width: 100%;
 
-                    label {
-                        width: 100%;
-                    }
-
+                    label,
+                    .radio_label,
                     .adress_input {
                         width: 100%;
                     }
-                }
 
-                .topics {
-                    flex-direction: column;
 
-                    label {
-                        width: 100%;
-                    }
 
 
                 }
+
+
             }
 
 
