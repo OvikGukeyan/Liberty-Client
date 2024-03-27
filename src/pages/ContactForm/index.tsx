@@ -31,14 +31,14 @@ const ContactForm: React.FC = () => {
                     <span>Go Back</span>
                 </Link>
             </div> */}
-            
+
 
 
             <div className={styles.checkout_box}>
-            <div className={styles.header}>
-                <img className={styles.logo} src="./assets/logo.png" alt="" />
-                <img src="./assets/name.png" alt="" />
-            </div>
+                <div className={styles.header}>
+                    <img className={styles.logo} src="./assets/logo.png" alt="" />
+                    <img className={styles.company_name} src="./assets/name.png" alt="" />
+                </div>
                 <h1>Kontaktformular </h1>
                 <form onSubmit={handleSubmit(submitHandler)}>
                     <h3>ANREDE</h3>
