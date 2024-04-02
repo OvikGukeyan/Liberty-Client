@@ -2,7 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import styles from './LoginForm.module.scss'
 import { useAppDispatch } from '../../redux/store';
-import { fetchLogin } from '../../redux/Slices/AuthSlice';
+import { fetchLogin, fetchRegister } from '../../redux/Slices/AuthSlice';
 
 const LoginForm: React.FC = () => {
     const dispatch = useAppDispatch();
@@ -15,8 +15,13 @@ const LoginForm: React.FC = () => {
         mode: 'onBlur'
     })
 
-    const onSubmit = (values: any) => {
-        dispatch(fetchLogin(values))
+    type FormValues = {
+        email: string;
+        password: string;
+      };
+
+    const onSubmit = (values: FormValues) => {
+        dispatch(fetchRegister(values))
         console.log(values)
     }
 

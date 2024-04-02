@@ -1,7 +1,9 @@
 import React from 'react';
 import styles from './ContactForm.module.scss';
 // import { Link } from 'react-router-dom';
-import { useForm } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
+import { API_URL } from '../../http';
+import axios from 'axios';
 
 const ContactForm: React.FC = () => {
     const {
@@ -13,11 +15,21 @@ const ContactForm: React.FC = () => {
             mode: "onBlur"
         });
 
-    const paymentMethod = watch('payment');
 
-    const submitHandler = () => {
-        reset();
-    }
+   
+
+        const submitHandler = (values: FieldValues) => {
+            axios.post(`${API_URL}/contact`, values)
+                .then(response => {
+                    // Обработка успешного ответа
+                    console.log(response);
+                })
+                .catch(error => {
+                    // Обработка ошибки
+                    console.error('Error submitting form:', error);
+                });
+            reset(); // Опционально сбросить значения формы после отправки
+        }
 
 
 
@@ -44,13 +56,13 @@ const ContactForm: React.FC = () => {
                     <h3>ANREDE</h3>
                     <div className={styles.input_box}>
                         <label className={styles.radio_label}>Herr
-                            <input className={styles.radio}  {...register('sex', {
-                                required: true
+                            <input className={styles.radio}  {...register('salutation', {
+                                required: 'Required field'
                             })} type="radio" value="herr" />
                         </label>
 
                         <label className={styles.radio_label}>Frau
-                            <input className={styles.radio} {...register('sex')} type="radio" value="frau" />
+                            <input className={styles.radio} {...register('salutation')} type="radio" value="frau" />
                         </label>
                         <label >Titel:
                             {errors?.titel && <p>{errors?.titel?.message?.toString() || 'Wrong format!'}</p>}
@@ -165,20 +177,20 @@ const ContactForm: React.FC = () => {
                         <label className={styles.radio_label}>Baufinanzierung
                             <input className={styles.radio} {...register('topic', {
                                 required: true
-                            })} type="radio" value="baufinanzierung" />
+                            })} type="checkbox" value="baufinanzierung" />
                         </label>
 
                         <label className={styles.radio_label}>Privatkredit
-                            <input className={styles.radio} {...register('topic')} type="radio" value="privatkredit" />
+                            <input className={styles.radio} {...register('topic')} type="checkbox" value="privatkredit" />
                         </label>
                         <label className={styles.radio_label}>Versicherung
-                            <input className={styles.radio} {...register('topic')} type="radio" value="versicherung" />
+                            <input className={styles.radio} {...register('topic')} type="checkbox" value="versicherung" />
                         </label>
                         <label className={styles.radio_label}>Kapitalaufbau
-                            <input className={styles.radio} {...register('topic')} type="radio" value="kapitalaufbau" />
+                            <input className={styles.radio} {...register('topic')} type="checkbox" value="kapitalaufbau" />
                         </label>
                         <label className={styles.radio_label}>Immobilien
-                            <input className={styles.radio} {...register('topic')} type="radio" value="immobilien" />
+                            <input className={styles.radio} {...register('topic')} type="checkbox" value="immobilien" />
                         </label>
                     </div>
                     <div className={styles.input_box}>

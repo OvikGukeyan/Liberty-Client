@@ -1,9 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { AxiosResponse } from "axios";
+import axios, { AxiosResponse } from "axios";
 
 import { IUser } from "../../../models/IUser";
 import AuthService from "../../../services/authService";
 import { AuthResponse } from "../../../models/response/AuthResponse";
+import { API_URL } from "../../../http";
 
 type params = {
     email: string
@@ -20,6 +21,10 @@ export const fetchRegister = createAsyncThunk<AxiosResponse<AuthResponse>, param
 
 export const fetchLogout = createAsyncThunk<void>('auth/fetchLogout', () => {
     return AuthService.logout()
+})
+
+export const checkAuth = createAsyncThunk<AxiosResponse<AuthResponse>>('auth/checkAuth', () => {
+    return AuthService.checkAuth()
 })
 
 interface authSliceState {
@@ -61,7 +66,7 @@ const authSlice = createSlice({
                 state.isLoading = false;
                 state.user = action.payload.data.user;
                 state.isAuth = true;
-                localStorage.setItem('token', action.payload.data.accessToken)
+                localStorage.setItem('token', action.payload.data.accessToken);
             })
             .addCase(fetchRegister.rejected, (state) => {
                 state.isLoading = false;
@@ -71,13 +76,28 @@ const authSlice = createSlice({
             .addCase(fetchLogout.pending, (state) => {
                 state.isLoading = true;
             })
-            .addCase(fetchLogout.fulfilled, (state, action) => {
+            .addCase(fetchLogout.fulfilled, (state) => {
                 state.isLoading = false;
                 state.user = null;
                 localStorage.removeItem('token');
                 state.isAuth = false;
             })
             .addCase(fetchLogout.rejected, (state) => {
+                state.isLoading = false;
+            })
+
+
+            .addCase(checkAuth.pending, (state) => {
+                state.isLoading = true;
+            })
+            .addCase(checkAuth.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.user = action.payload.data.user;
+                state.isAuth = true;
+                localStorage.setItem('token', action.payload.data.accessToken);
+                console.log(action.payload.data)
+            })
+            .addCase(checkAuth.rejected, (state) => {
                 state.isLoading = false;
             })
     }

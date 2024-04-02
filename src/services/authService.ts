@@ -1,10 +1,10 @@
-import $api from "../http";
-import { AxiosResponse } from "axios";
+import $api, { API_URL } from "../http";
+import axios, { AxiosResponse } from "axios";
 import { AuthResponse } from "../models/response/AuthResponse";
 
 
 export default class AuthService {
-    static login = async(email: string, password: string): Promise<AxiosResponse<AuthResponse>> => {
+    static async login(email: string, password: string): Promise<AxiosResponse<AuthResponse>> {
         return $api.post<AuthResponse>('/login', {email, password})
     }
 
@@ -14,6 +14,10 @@ export default class AuthService {
 
     static async logout (): Promise<void> {
         return $api.post('/logout')
+    }
+
+    static async checkAuth() {
+        return axios.get(`${API_URL}/refresh`, {withCredentials: true})
     }
 };
 
