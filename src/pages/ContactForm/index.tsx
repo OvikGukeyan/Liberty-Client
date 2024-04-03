@@ -1,35 +1,63 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './ContactForm.module.scss';
-// import { Link } from 'react-router-dom';
 import { FieldValues, useForm } from "react-hook-form";
 import { API_URL } from '../../http';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
+import qs from 'qs';
 
 const ContactForm: React.FC = () => {
     const {
         register,
         formState: { errors, isValid },
         handleSubmit,
-        watch,
+        setValue,
+        formState: {isSubmitSuccessful, isSubmitted},
         reset } = useForm({
+            defaultValues: {
+                salutation: 'herr',
+                titel: 'doctor',
+                firstName: 'Ivan',
+                lastName: 'Petrov',
+                emailAdress: '0953188061ovik@gmail.com',
+                phoneNumber: '0957744848',
+                adress: 'Bussardweg, 2a',
+                zipCode: '59399',
+                city: 'Lingen',
+                country: 'Germany',
+                topic: ['Baufinanzierung'],
+                description: 'Hello',
+                check: true,
+                manager: ''
+            },
             mode: "onBlur"
         });
 
 
-   
 
-        const submitHandler = (values: FieldValues) => {
-            axios.post(`${API_URL}/contact`, values)
-                .then(response => {
-                    // Обработка успешного ответа
-                    console.log(response);
-                })
-                .catch(error => {
-                    // Обработка ошибки
-                    console.error('Error submitting form:', error);
-                });
-            reset(); // Опционально сбросить значения формы после отправки
+    useEffect(() => {
+        if (window.location.search) {
+            const params = qs.parse(window.location.search.substring(1)) as unknown as {m: string};
+            setValue('manager', params.m)
         }
+    }, [])
+
+
+
+
+    const submitHandler = (values: FieldValues) => {
+
+
+        axios.post(`${API_URL}/contact`, values)
+            .then(response => {
+                document.body.style.overflow = 'hidden';
+            })
+            .catch(error => {
+                // Обработка ошибки
+                console.error('Error submitting form:', error);
+            });
+        reset(); // Опционально сбросить значения формы после отправки
+    }
 
 
 
@@ -103,8 +131,8 @@ const ContactForm: React.FC = () => {
                         </label>
 
                         <label>Email:
-                            {errors?.emailAddress && <p>{errors?.emailAddress?.message?.toString() || 'Wrong format!'}</p>}
-                            <input className={`${errors?.emailAddress && styles.input_error} ${styles.input}`} {...register('emailAddress', {
+                            {errors?.emailAdress && <p>{errors?.emailAdress?.message?.toString() || 'Wrong format!'}</p>}
+                            <input className={`${errors?.emailAdress && styles.input_error} ${styles.input}`} {...register('emailAdress', {
                                 required: 'Required field',
                                 pattern: {
                                     value: /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/,
@@ -195,13 +223,13 @@ const ContactForm: React.FC = () => {
                     </div>
                     <div className={styles.input_box}>
                         <label className={styles.description} >Bemerkung:
-                            {errors?.adress && <p>{errors?.adress?.message?.toString() || 'Wrong format!'}</p>}
-                            <textarea className={errors?.adress && styles.input_error} {...register('adress', {
+                            {errors?.adress && <p>{errors?.description?.message?.toString() || 'Wrong format!'}</p>}
+                            <textarea className={errors?.description && styles.input_error} {...register('description', {
                                 required: 'Required field',
-                                pattern: {
-                                    value: /^[a-zA-Z0-9\s,'-]*$/,
-                                    message: 'Wrong Adress format!'
-                                }
+                                // pattern: {
+                                //     value: /^[a-zA-Z0-9\s,'-]*$/,
+                                //     message: 'Wrong format!'
+                                // }
                             })} />
                         </label>
                     </div>
@@ -214,6 +242,12 @@ const ContactForm: React.FC = () => {
 
                     <button disabled={!isValid} className={styles.submit_button} type='submit'>Abschicken</button>
                 </form>
+            </div>
+            <div className={`${styles.overlay} ${isSubmitSuccessful ? styles.overlayVisible: ''}`}>
+                        <div className={styles.board} >
+                            <img src="./assets/submited.png" alt="" />
+                            <h1>Vielen Dank für ihr Vertrauen. <br />Wir kümmern uns schnellstmöglich um ihr Anliegen</h1>
+                        </div>
             </div>
         </div>
     )

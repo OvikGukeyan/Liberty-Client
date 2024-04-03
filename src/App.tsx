@@ -17,7 +17,7 @@ const App: React.FC = () => {
 
   return (
     <div className="App">
-      <Home/>
+      {/* <Home/> */}
       <ContactForm/>
     </div>
   );

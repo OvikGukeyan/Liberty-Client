@@ -22,7 +22,6 @@ const LoginForm: React.FC = () => {
 
     const onSubmit = (values: FormValues) => {
         dispatch(fetchRegister(values))
-        console.log(values)
     }
 
     return (
