@@ -12,7 +12,7 @@ const ContactForm: React.FC = () => {
         formState: { errors, isValid },
         handleSubmit,
         setValue,
-        formState: {isSubmitSuccessful, isSubmitted},
+        formState: { isSubmitSuccessful, isSubmitted },
         reset } = useForm({
             defaultValues: {
                 salutation: 'herr',
@@ -25,7 +25,7 @@ const ContactForm: React.FC = () => {
                 zipCode: '59399',
                 city: 'Lingen',
                 country: 'Germany',
-                topic: ['Baufinanzierung'],
+                topic: ['baufinanzierung'],
                 description: 'Hello',
                 check: true,
                 manager: ''
@@ -37,7 +37,7 @@ const ContactForm: React.FC = () => {
 
     useEffect(() => {
         if (window.location.search) {
-            const params = qs.parse(window.location.search.substring(1)) as unknown as {m: string};
+            const params = qs.parse(window.location.search.substring(1)) as unknown as { m: string };
             setValue('manager', params.m)
         }
     }, [])
@@ -97,8 +97,8 @@ const ContactForm: React.FC = () => {
                             <input className={`${errors?.titel && styles.input_error} ${styles.input}`} {...register('titel', {
                                 required: false,
                                 pattern: {
-                                    value: /[A-Za-z]{3}/,
-                                    message: 'Name must contain at least three letters'
+                                    value: /[A-Za-z]{2}/,
+                                    message: 'Titel must contain at least two letters'
                                 }
                             })} />
                         </label>
@@ -106,7 +106,7 @@ const ContactForm: React.FC = () => {
 
 
 
-                    <h3>NAME UND KONTAKTINFORMATIONEN</h3>
+                    <h3>KONTAKTINFORMATIONEN</h3>
                     <div className={styles.input_box}>
                         <label >Vorname:
                             {errors?.firstName && <p>{errors?.firstName?.message?.toString() || 'Wrong format!'}</p>}
@@ -203,13 +203,13 @@ const ContactForm: React.FC = () => {
                     <h3>Ich wünche eine unverbindliche Beratung zu folgendem Thema</h3>
                     <div className={styles.input_box}>
                         <label className={styles.radio_label}>Baufinanzierung
-                            <input className={styles.radio} {...register('topic', {
-                                required: true
-                            })} type="checkbox" value="baufinanzierung" />
+                            <input className={styles.radio} {...register('topic', { required: true })} type="checkbox" value="baufinanzierung" />
                         </label>
-
                         <label className={styles.radio_label}>Privatkredit
                             <input className={styles.radio} {...register('topic')} type="checkbox" value="privatkredit" />
+                        </label>
+                        <label className={styles.radio_label}>Autokredit
+                            <input className={styles.radio} {...register('topic')} type="checkbox" value="autokredit" />
                         </label>
                         <label className={styles.radio_label}>Versicherung
                             <input className={styles.radio} {...register('topic')} type="checkbox" value="versicherung" />
@@ -220,34 +220,28 @@ const ContactForm: React.FC = () => {
                         <label className={styles.radio_label}>Immobilien
                             <input className={styles.radio} {...register('topic')} type="checkbox" value="immobilien" />
                         </label>
+
                     </div>
                     <div className={styles.input_box}>
                         <label className={styles.description} >Bemerkung:
-                            {errors?.adress && <p>{errors?.description?.message?.toString() || 'Wrong format!'}</p>}
-                            <textarea className={errors?.description && styles.input_error} {...register('description', {
-                                required: 'Required field',
-                                // pattern: {
-                                //     value: /^[a-zA-Z0-9\s,'-]*$/,
-                                //     message: 'Wrong format!'
-                                // }
-                            })} />
+                            <textarea {...register('description')} />
                         </label>
                     </div>
                     <div className={styles.check_box}>
                         <input {...register('check', {
                             required: true
                         })} className={styles.check} type="checkbox" />
-                        <p>Hiermit bestätige ich, dass ich mit der Speiderung und Verarbeitung meiner Daten einverstanden bin  </p>
+                        <p>Hiermit bestätige ich, dass ich mit der Speicherung und Verarbeitung meiner Daten einverstanden bin  </p>
                     </div>
 
                     <button disabled={!isValid} className={styles.submit_button} type='submit'>Abschicken</button>
                 </form>
             </div>
-            <div className={`${styles.overlay} ${isSubmitSuccessful ? styles.overlayVisible: ''}`}>
-                        <div className={styles.board} >
-                            <img src="./assets/submited.png" alt="" />
-                            <h1>Vielen Dank für ihr Vertrauen. <br />Wir kümmern uns schnellstmöglich um ihr Anliegen</h1>
-                        </div>
+            <div className={`${styles.overlay} ${isSubmitSuccessful ? styles.overlayVisible : ''}`}>
+                <div className={styles.board} >
+                    <img src="./assets/submited.png" alt="" />
+                    <h1>Vielen Dank für ihr Vertrauen. <br />Wir kümmern uns schnellstmöglich um ihr Anliegen</h1>
+                </div>
             </div>
         </div>
     )
