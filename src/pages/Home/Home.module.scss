@@ -1,0 +1,174 @@
+.wrapper {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+
+    .box_1 {
+        display: flex;
+        width: 100%;
+        height: 65%;
+
+        .main {
+            width: 60%;
+            height: 100%;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+
+            .video {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                z-index: -1;
+            }
+
+            header {
+                height: 60px;
+                display: flex;
+                align-items: center;
+
+                .logo {
+                    margin-right: 50px;
+
+                    img {
+                        height: 60px;
+                    }
+                }
+
+                nav {
+                    ul {
+                        display: flex;
+                        align-items: center;
+
+                        li {
+                            list-style-type: none;
+                            margin-right: 40px;
+                            font-size: 18px;
+                            font-weight: 500;
+                            cursor: pointer;
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+
+                            &:hover {
+                                &::after {
+                                    width: 30px;
+
+                                }
+                            }
+
+                            &::after {
+                                content: "";
+                                display: block;
+                                width: 0px;
+                                height: 3px;
+                                background-color: #000;
+                                transition: all 0.2s ease-in-out;
+                            }
+                        }
+                    }
+                }
+            }
+
+
+        }
+
+        .services {
+            width: 40%;
+            height: 100%;
+
+            .slide {
+                padding: 80px;
+                min-width: 100%;
+
+                h1 {
+                    font-size: 40px;
+                    font-weight: 600;
+                    line-height: 40px;
+                    margin-bottom: 20px;
+                }
+
+                p {
+                    color: #A0A0A0;
+                    font-size: 12px;
+                    font-weight: 50;
+                    line-height: 20px;
+                }
+
+                button {
+                    border: none;
+                    background-color: #fff;
+                    cursor: pointer;
+                    margin-top: 25px;
+                    font-size: 14px;
+                    letter-spacing: 10px;
+                    display: flex;
+                    align-items: center;
+
+                    svg {
+                        margin-left: 20px;
+                    }
+
+                    &:hover {
+                        color: #A0A0A0;
+
+                        svg {
+                            fill: #A0A0A0;
+                        }
+                    }
+                }
+
+
+            }
+        }
+
+    }
+
+    .box_2 {
+        display: flex;
+        height: 35%;
+
+        .photo_1 {
+            background-image: url(../../../public/assets/Insurance.jpg);
+            background-size: cover;
+            background-position: center;
+            width: 30%;
+            height: 100%;
+        }
+
+        .about {
+            width: 40%;
+            height: 100%;
+            padding: 50px;
+
+            h3 {
+                font-size: 14px;
+                font-weight: 800;
+                letter-spacing: 5px;
+                margin-bottom: 15px;
+            }
+
+            p {
+                color: #A0A0A0;
+                font-size: 12px;
+                font-weight: 50;
+                line-height: 20px;
+            }
+
+        }
+
+        .photo_2 {
+            background-image: url(https://cdn.corporatefinanceinstitute.com/assets/home-mortgage.jpeg);
+            background-size: cover;
+            background-position: center;
+            width: 30%;
+            height: 100%;
+
+        }
+    }
+
+
+}
