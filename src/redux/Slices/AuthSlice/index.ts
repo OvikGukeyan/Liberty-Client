@@ -1,10 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios, { AxiosResponse } from "axios";
+import  { AxiosResponse } from "axios";
 
 import { IUser } from "../../../models/IUser";
 import AuthService from "../../../services/authService";
 import { AuthResponse } from "../../../models/response/AuthResponse";
-import { API_URL } from "../../../http";
 
 type params = {
     email: string

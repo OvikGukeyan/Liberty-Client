@@ -109,7 +109,8 @@
                     align-items: center;
 
                     svg {
-                        margin-left: 20px;
+                        margin-left: 10px;
+                        transition: all 0.2s ease-in-out;
                     }
 
                     &:hover {
@@ -117,6 +118,7 @@
 
                         svg {
                             fill: #A0A0A0;
+                            margin-left: 20px;
                         }
                     }
                 }

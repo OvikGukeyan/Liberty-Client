@@ -76,8 +76,8 @@ const ContactForm: React.FC = () => {
 
             <div className={styles.checkout_box}>
                 <div className={styles.header}>
-                    <img className={styles.logo} src="./assets/logo.png" alt="" />
-                    <img className={styles.company_name} src="./assets/name.png" alt="" />
+                    <img className={styles.logo} src="/assets/logo.png" alt="" />
+                    <img className={styles.company_name} src="/assets/name.png" alt="" />
                 </div>
                 <h1>Kontaktformular </h1>
                 <form onSubmit={handleSubmit(submitHandler)}>
@@ -239,8 +239,8 @@ const ContactForm: React.FC = () => {
             </div>
             <div className={`${styles.overlay} ${isSubmitSuccessful ? styles.overlayVisible : ''}`}>
                 <div className={styles.board} >
-                    <img src="./assets/submited.png" alt="" />
-                    <h1>Vielen Dank für ihr Vertrauen. <br />Wir kümmern uns schnellstmöglich um ihr Anliegen</h1>
+                    <img src="/assets/submited.png" alt="" />
+                    <h1>Vielen Dank für Ihr Vertrauen. <br />Wir kümmern uns schnellstmöglich um Ihr Anliegen</h1>
                 </div>
             </div>
         </div>

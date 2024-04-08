@@ -5,6 +5,7 @@ import ContactForm from './pages/ContactForm';
 import Home from './pages/Home';
 import { useAppDispatch } from './redux/store';
 import { checkAuth } from './redux/Slices/AuthSlice';
+import { Routes, Route } from 'react-router-dom';
 
 const App: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -17,8 +18,14 @@ const App: React.FC = () => {
 
   return (
     <div className="App">
-      {/* <Home/> */}
-      <ContactForm/>
+      <Routes>
+      
+        <Route path='/' element={<Home/>}/>
+
+        <Route path='/contact' element={<ContactForm/>}/>
+
+      </Routes>
+      
     </div>
   );
 }
