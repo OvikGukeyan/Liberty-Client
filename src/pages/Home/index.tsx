@@ -1,11 +1,9 @@
-import React, { LegacyRef, useRef } from 'react';
-import { Carousel, LoginForm } from '../../components';
+import React from 'react';
+import { Carousel } from '../../components';
 import styles from './Home.module.scss'
 
 
 const Home: React.FC = () => {
-
-
 
 
   return (
@@ -15,7 +13,7 @@ const Home: React.FC = () => {
           <video muted autoPlay className={styles.video} src="./assets/Lingen1.mp4"></video>
           <header>
             <div className={styles.logo}>
-              <img src="./assets/logo.png" alt="" />
+              <img src="./assets/logo-full.png" alt="" />
             </div>
             <nav>
               <ul>
