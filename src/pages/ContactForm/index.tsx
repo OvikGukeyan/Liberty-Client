@@ -27,7 +27,7 @@ const ContactForm: React.FC = () => {
                 topic: ['baufinanzierung'],
                 description: 'Hello',
                 check: true,
-                manager: ''
+                manager: 'Liberty'
             },
             mode: "onBlur"
         });
