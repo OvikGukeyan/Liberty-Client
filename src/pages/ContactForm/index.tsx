@@ -47,7 +47,7 @@ const ContactForm: React.FC = () => {
     const submitHandler = (values: FieldValues) => {
 
 
-        axios.post(`${process.env.REACT_APP_API_URL}api/contact`, values)
+        axios.post(`${process.env.REACT_APP_API_URL}/api/contact`, values)
             .then(response => {
                 document.body.style.overflow = 'hidden';
             })
