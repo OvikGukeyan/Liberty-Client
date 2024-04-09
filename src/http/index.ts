@@ -1,6 +1,5 @@
 import axios from "axios";
 
-// export const REACT_APP_API_URL = 'https://localhost:7777/api';
 
 const $api = axios.create({
     withCredentials: true,

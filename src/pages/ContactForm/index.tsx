@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import styles from './ContactForm.module.scss';
 import { FieldValues, useForm } from "react-hook-form";
-// import { REACT_APP_API_URL } from '../../http';
 import axios from 'axios';
 import qs from 'qs';
 
@@ -11,7 +10,7 @@ const ContactForm: React.FC = () => {
         formState: { errors, isValid },
         handleSubmit,
         setValue,
-        formState: { isSubmitSuccessful },
+        formState: { isSubmitSuccessful, isSubmitted },
         reset } = useForm({
             defaultValues: {
                 salutation: 'herr',
@@ -27,7 +26,7 @@ const ContactForm: React.FC = () => {
                 topic: ['baufinanzierung'],
                 description: 'Hello',
                 check: true,
-                manager: 'Liberty'
+                manager: ''
             },
             mode: "onBlur"
         });
@@ -47,7 +46,7 @@ const ContactForm: React.FC = () => {
     const submitHandler = (values: FieldValues) => {
 
 
-        axios.post(`${process.env.REACT_APP_API_URL}/api/contact`, values)
+        axios.post(`${process.env.REACT_APP_API_URL}/contact`, values)
             .then(response => {
                 document.body.style.overflow = 'hidden';
             })

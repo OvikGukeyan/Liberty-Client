@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import { useAppDispatch } from './redux/store';
 import { checkAuth } from './redux/Slices/AuthSlice';
 import { Routes, Route, Navigate } from 'react-router-dom';
+import dotenv from 'dotenv';
 
 const App: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -14,7 +15,6 @@ const App: React.FC = () => {
       dispatch(checkAuth())
     }
   }, [])
-
   return (
     <div className="App">
       <Routes>
