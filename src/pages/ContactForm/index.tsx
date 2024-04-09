@@ -1,32 +1,37 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './ContactForm.module.scss';
 import { FieldValues, useForm } from "react-hook-form";
 import axios from 'axios';
 import qs from 'qs';
 
 const ContactForm: React.FC = () => {
+    const [isSubmitted, setIsSubmitted] = useState(false);
+    const [isRejected, setIsRejected] = useState(false);
+
+
     const {
         register,
         formState: { errors, isValid },
         handleSubmit,
         setValue,
-        formState: { isSubmitSuccessful, isSubmitted },
+        setError,
+        formState: { isSubmitSuccessful },
         reset } = useForm({
             defaultValues: {
                 salutation: 'herr',
-                titel: 'doctor',
-                firstName: 'Ivan',
-                lastName: 'Petrov',
-                emailAdress: '0953188061ovik@gmail.com',
-                phoneNumber: '0957744848',
-                adress: 'Bussardweg, 2a',
-                zipCode: '59399',
-                city: 'Lingen',
-                country: 'Germany',
+                titel: '',
+                firstName: '',
+                lastName: '',
+                emailAdress: '',
+                phoneNumber: '',
+                adress: '',
+                zipCode: '',
+                city: '',
+                country: '',
                 topic: ['baufinanzierung'],
-                description: 'Hello',
-                check: true,
-                manager: ''
+                description: '',
+                check: false,
+                manager: 'Liberty-web-site'
             },
             mode: "onBlur"
         });
@@ -46,13 +51,17 @@ const ContactForm: React.FC = () => {
     const submitHandler = (values: FieldValues) => {
 
 
-        axios.post(`${process.env.REACT_APP_API_URL}/contact`, values)
+        axios.post(`${process.env.REACT_APP_API_UR}/contact`, values)
             .then(response => {
                 document.body.style.overflow = 'hidden';
+                setIsRejected(false)
+                setIsSubmitted(true)
             })
             .catch(error => {
                 // Обработка ошибки
                 console.error('Error submitting form:', error);
+                setIsSubmitted(false)
+                setIsRejected(true)
             });
         reset(); // Опционально сбросить значения формы после отправки
     }
@@ -201,7 +210,7 @@ const ContactForm: React.FC = () => {
                     <h3>Ich wünche eine unverbindliche Beratung zu folgendem Thema</h3>
                     <div className={styles.input_box}>
                         <label className={styles.radio_label}>Baufinanzierung
-                            <input className={styles.radio} {...register('topic', { required: true })} type="checkbox" value="baufinanzierung" />
+                            <input className={styles.radio} {...register('topic', { required: 'You have to select at least one topic' })} type="checkbox" value="baufinanzierung" />
                         </label>
                         <label className={styles.radio_label}>Privatkredit
                             <input className={styles.radio} {...register('topic')} type="checkbox" value="privatkredit" />
@@ -235,10 +244,16 @@ const ContactForm: React.FC = () => {
                     <button disabled={!isValid} className={styles.submit_button} type='submit'>Abschicken</button>
                 </form>
             </div>
-            <div className={`${styles.overlay} ${isSubmitSuccessful ? styles.overlayVisible : ''}`}>
+            <div className={`${styles.overlay} ${isSubmitted ? styles.overlayVisible : ''}`}>
                 <div className={styles.board} >
                     <img src="/assets/submited.png" alt="" />
                     <h1>Vielen Dank für Ihr Vertrauen. <br />Wir kümmern uns schnellstmöglich um Ihr Anliegen</h1>
+                </div>
+            </div>
+            <div className={`${styles.overlay} ${isRejected ? styles.overlayVisible : ''}`}>
+                <div className={styles.board} >
+                    <img src="/assets/error.png" alt="" />
+                    <h1>Beim Senden ist ein Fehler aufgetreten</h1>
                 </div>
             </div>
         </div>
