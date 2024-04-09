@@ -1,6 +1,6 @@
 import axios from "axios";
 
-// export const REACT_APP_API_URL = 'https://liberty-server-db406efca9dc.herokuapp.com/api';
+// export const REACT_APP_API_URL = 'https://localhost:7777/api';
 
 const $api = axios.create({
     withCredentials: true,

@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
 import styles from './ContactForm.module.scss';
 import { FieldValues, useForm } from "react-hook-form";
-// import { API_URL } from '../../http';
+// import { REACT_APP_API_URL } from '../../http';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
 import qs from 'qs';
 
 const ContactForm: React.FC = () => {

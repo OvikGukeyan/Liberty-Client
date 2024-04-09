@@ -1,4 +1,4 @@
-import $api, { API_URL } from "../http";
+import $api, {  } from "../http";
 import axios, { AxiosResponse } from "axios";
 import { AuthResponse } from "../models/response/AuthResponse";
 
@@ -17,7 +17,7 @@ export default class AuthService {
     }
 
     static async checkAuth() {
-        return axios.get(`${API_URL}/refresh`, {withCredentials: true})
+        return axios.get(`${process.env.REACT_APP_API_URL}/refresh`, {withCredentials: true})
     }
 };
 
