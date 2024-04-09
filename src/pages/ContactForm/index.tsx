@@ -11,7 +11,7 @@ const ContactForm: React.FC = () => {
         formState: { errors, isValid },
         handleSubmit,
         setValue,
-        formState: { isSubmitSuccessful, isSubmitted },
+        formState: { isSubmitSuccessful },
         reset } = useForm({
             defaultValues: {
                 salutation: 'herr',
