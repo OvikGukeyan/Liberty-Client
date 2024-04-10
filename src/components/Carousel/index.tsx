@@ -68,10 +68,10 @@ const Carousel: React.FC<CarouselTypes> = ({ children }) => {
         
         <div className={styles.slider}>
               <div onClick={handleLeftArrowClick} className={styles.button_left}>
-                <svg width="14" height="24" xmlns="http://www.w3.org/2000/svg"><path d="M13 0L1 12l12 12" stroke="#FFF" fill="none" fill-rule="evenodd" /></svg>
+                <svg width="14" height="24" xmlns="http://www.w3.org/2000/svg"><path d="M13 0L1 12l12 12"  fill="none" fill-rule="evenodd" /></svg>
               </div>
               <div onClick={handleRightArrowClick} className={styles.button_right}>
-                <svg width="14" height="24" xmlns="http://www.w3.org/2000/svg"><path d="M1 0l12 12L1 24" stroke="#FFF" fill="none" fill-rule="evenodd" /></svg>
+                <svg width="14" height="24" xmlns="http://www.w3.org/2000/svg"><path d="M1 0l12 12L1 24"  fill="none" fill-rule="evenodd" /></svg>
               </div>
             </div>
       </div>

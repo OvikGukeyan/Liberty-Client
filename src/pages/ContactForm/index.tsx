@@ -14,8 +14,6 @@ const ContactForm: React.FC = () => {
         formState: { errors, isValid },
         handleSubmit,
         setValue,
-        setError,
-        formState: { isSubmitSuccessful },
         reset } = useForm({
             defaultValues: {
                 salutation: 'herr',
@@ -51,19 +49,18 @@ const ContactForm: React.FC = () => {
     const submitHandler = (values: FieldValues) => {
 
 
-        axios.post(`${process.env.REACT_APP_API_UR}/contact`, values)
+        axios.post(`${process.env.REACT_APP_API_URL}/contact`, values)
             .then(response => {
                 document.body.style.overflow = 'hidden';
                 setIsRejected(false)
                 setIsSubmitted(true)
             })
             .catch(error => {
-                // Обработка ошибки
                 console.error('Error submitting form:', error);
                 setIsSubmitted(false)
                 setIsRejected(true)
             });
-        reset(); // Опционально сбросить значения формы после отправки
+        reset(); 
     }
 
 
@@ -73,13 +70,6 @@ const ContactForm: React.FC = () => {
 
     return (
         <div className={styles.checkout_wrapper}>
-            {/* <div className={styles.back}>
-                <Link to='/items'>
-                    <span>Go Back</span>
-                </Link>
-            </div> */}
-
-
 
             <div className={styles.checkout_box}>
                 <div className={styles.header}>

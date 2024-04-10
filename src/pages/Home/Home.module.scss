@@ -172,5 +172,88 @@
         }
     }
 
+    @media (max-width: 1300px) {
+        .box_1 {
+            .services {
+                .slide {
+                    padding: 50px;
+
+                    h1 {
+                        font-size: 30px;
+                        line-height: 33px;
+                    }
+                }
+            }
+        }
+
+        .box_2 {
+            .about {
+                padding: 40px;
+            }
+        }
+    }
+
+    @media (max-width: 1000px) {
+        .box_1 {
+            .services {
+                .slide {
+                    padding: 35px;
+
+                    h1 {
+                        font-size: 25px;
+                        line-height: 27px;
+                    }
+                }
+            }
+        }
+
+        .box_2 {
+            .about {
+                padding: 30px;
+
+                h3 {
+                    margin-bottom: 10px;
+                    font-size: 12px;
+                }
+
+                p {
+                    line-height: 16px;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 767px) {
+        overflow: scroll;
+        height: auto;
+
+        .box_1 {
+            flex-direction: column;
+
+            .main {
+                width: 100%;
+                height: 250px;
+
+            }
+
+            .services {
+                width: 100%;
+            }
+
+        }
+
+        .box_2 {
+            flex-direction: column;
+
+            .photo_1,
+            .photo_2,
+            .about {
+                width: 100%;
+                height: 200px;
+            }
+
+
+        }
+    }
 
 }
