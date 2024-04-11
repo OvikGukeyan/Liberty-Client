@@ -38,8 +38,8 @@ const ContactForm: React.FC = () => {
 
     useEffect(() => {
         if (window.location.search) {
-            const params = qs.parse(window.location.search.substring(1)) as unknown as { m: string };
-            setValue('manager', params.m)
+            const params = qs.parse(window.location.search.substring(1)) as unknown as { id: string };
+            setValue('manager', params.id)
         }
     }, [])
 

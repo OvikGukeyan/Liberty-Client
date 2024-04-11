@@ -12,10 +12,12 @@ const Home: React.FC = () => {
         <div className={styles.main}>
           <video muted autoPlay className={styles.video} src="./assets/Lingen1.mp4"></video>
           <header>
+            <img className={styles.hamburger} src="./assets/hamburger.png" alt="" />
             <div className={styles.logo}>
               <img src="./assets/logo-full.png" alt="" />
             </div>
             <nav>
+              <img className={styles.close} src="./assets/close.png" alt="" />
               <ul>
                 <li>home</li>
                 <li>shope</li>
