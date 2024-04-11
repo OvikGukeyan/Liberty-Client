@@ -217,6 +217,13 @@ const ContactForm: React.FC = () => {
                         <label className={styles.radio_label}>Immobilien
                             <input className={styles.radio} {...register('topic')} type="checkbox" value="immobilien" />
                         </label>
+                        <label className={styles.radio_label}>Modernisierungsdarlehen
+                            <input className={styles.radio} {...register('topic')} type="checkbox" value="modernisierungsdarlehen" />
+                        </label>
+                        <label className={styles.radio_label}>Kapitalbeschaffung
+                            <input className={styles.radio} {...register('topic')} type="checkbox" value="kapitalbeschaffung" />
+                        </label>
+
 
                     </div>
                     <div className={styles.input_box}>
