@@ -7,7 +7,7 @@ import qs from 'qs';
 const ContactForm: React.FC = () => {
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [isRejected, setIsRejected] = useState(false);
-
+    const [isLoading, setIsLoading] = useState(false)
 
     const {
         register,
@@ -45,24 +45,24 @@ const ContactForm: React.FC = () => {
 
 
 
-
     const submitHandler = (values: FieldValues) => {
-
+        setIsLoading(true)
 
         axios.post(`${process.env.REACT_APP_API_URL}/contact`, values)
             .then(response => {
                 document.body.style.overflow = 'hidden';
                 setIsRejected(false)
                 setIsSubmitted(true)
+                setIsLoading(false)
             })
             .catch(error => {
                 console.error('Error submitting form:', error);
+                setIsLoading(false)
                 setIsSubmitted(false)
                 setIsRejected(true)
             });
-        reset(); 
+        reset();
     }
-
 
 
 
@@ -238,6 +238,15 @@ const ContactForm: React.FC = () => {
                 <div className={styles.board} >
                     <img src="/assets/submited.png" alt="" />
                     <h1>Vielen Dank für Ihr Vertrauen. <br />Wir kümmern uns schnellstmöglich um Ihr Anliegen</h1>
+                </div>
+            </div>
+
+            <div className={`${styles.overlay} ${isLoading ? styles.overlayVisible : ''}`}>
+                <div className={styles.loader}>
+                    <div className={styles.circle}></div>
+                    <div className={styles.circle}></div>
+                    <div className={styles.circle}></div>
+                    <div className={styles.circle}></div>
                 </div>
             </div>
             <div className={`${styles.overlay} ${isRejected ? styles.overlayVisible : ''}`}>
