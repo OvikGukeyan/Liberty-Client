@@ -152,7 +152,7 @@ const ContactForm: React.FC = () => {
 
                     <h3>ADRESSE</h3>
                     <div className={styles.input_box}>
-                        <label className={styles.adress_input} >Straße:
+                        <label className={styles.adress_input} >Straße + Hausnummer:
                             {errors?.adress && <p>{errors?.adress?.message?.toString() || 'Wrong format!'}</p>}
                             <input className={`${errors?.adress && styles.input_error} ${styles.input}`} {...register('adress', {
                                 required: 'Required field',
