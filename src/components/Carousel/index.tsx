@@ -33,10 +33,6 @@ const Carousel: React.FC<CarouselTypes> = ({ children }) => {
     })
   }
   useEffect(() => {
-    if (sliderRef.current) {
-      const width = sliderRef.current.offsetWidth;
-      setSliderWidth(width);
-    }
     const newChildren = Children.map(children, (child) => {
       if (React.isValidElement(child)) {
         return <div
@@ -54,6 +50,22 @@ const Carousel: React.FC<CarouselTypes> = ({ children }) => {
     }) as ReactElement[];
     setPages(newChildren);
   }, [children]);
+
+  const handleResize = () => {
+    if (sliderRef.current) {
+      const width = sliderRef.current.offsetWidth;
+      setSliderWidth(width);
+      setOffset(0);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   return (
     <div className={styles.main_container}>

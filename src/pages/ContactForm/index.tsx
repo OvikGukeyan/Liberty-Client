@@ -20,9 +20,9 @@ const ContactForm: React.FC = () => {
                 titel: '',
                 firstName: '',
                 lastName: '',
-                emailAdress: '',
+                emailAddress: '',
                 phoneNumber: '',
-                adress: '',
+                address: '',
                 zipCode: '',
                 city: '',
                 country: '',
@@ -47,7 +47,7 @@ const ContactForm: React.FC = () => {
 
     const submitHandler = (values: FieldValues) => {
         setIsLoading(true)
-
+        console.log(values)
         axios.post(`${process.env.REACT_APP_API_URL}/contact`, values)
             .then(response => {
                 document.body.style.overflow = 'hidden';
@@ -128,8 +128,8 @@ const ContactForm: React.FC = () => {
                         </label>
 
                         <label>Email:
-                            {errors?.emailAdress && <p>{errors?.emailAdress?.message?.toString() || 'Wrong format!'}</p>}
-                            <input className={`${errors?.emailAdress && styles.input_error} ${styles.input}`} {...register('emailAdress', {
+                            {errors?.emailAddress && <p>{errors?.emailAddress?.message?.toString() || 'Wrong format!'}</p>}
+                            <input className={`${errors?.emailAddress && styles.input_error} ${styles.input}`} {...register('emailAddress', {
                                 required: 'Required field',
                                 pattern: {
                                     value: /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/,
@@ -152,13 +152,13 @@ const ContactForm: React.FC = () => {
 
                     <h3>ADRESSE</h3>
                     <div className={styles.input_box}>
-                        <label className={styles.adress_input} >Straße + Hausnummer:
-                            {errors?.adress && <p>{errors?.adress?.message?.toString() || 'Wrong format!'}</p>}
-                            <input className={`${errors?.adress && styles.input_error} ${styles.input}`} {...register('adress', {
+                        <label className={styles.address_input} >Straße + Hausnummer:
+                            {errors?.address && <p>{errors?.address?.message?.toString() || 'Wrong format!'}</p>}
+                            <input className={`${errors?.address && styles.input_error} ${styles.input}`} {...register('address', {
                                 required: 'Required field',
                                 pattern: {
                                     value: /^[a-zA-Z0-9\s,'-]*$/,
-                                    message: 'Wrong Adress format!'
+                                    message: 'Wrong Address format!'
                                 }
                             })} />
                         </label>
